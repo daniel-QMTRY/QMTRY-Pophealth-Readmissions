@@ -8,7 +8,73 @@ This repo demonstrates a reproducible pipeline to identify high‑risk members f
 
 
 ## Why it matters
-- Lower avoidable utilization and total cost of care
+- Lower avoidable utilization and total cost of careQmtry Portfolio — Predictive Modeling For Population Health (case Study + Readme + Workflow)
+QMTRY-Pophealth-Readmissions
+
+Reproducible, audit-ready demo to predict 30-day readmissions & avoidable admissions with ML, LACE baselines, SHAP, and a Streamlit care-manager dashboard (synthetic data, deployable to client).
+
+QMTRY Predictive Modeling for Population Health
+
+This repo demonstrates a reproducible pipeline to identify high-risk members for 30-day readmission and potentially avoidable admissions (ACSC). It is designed to be deployed quickly on client data to reduce avoidable utilization and improve Stars.
+
+Why it matters
+
+Lower avoidable utilization and total cost of care
+
+Focus care-manager time on members where interventions change outcomes
+
+Provide transparent, audited, and fair predictions with clear next actions
+
+Live demo
+
+Streamlit app: population distributions, outreach worklist, ROI calculator (dark theme)
+
+How to run
+python -m venv .venv && source .venv/bin/activate  # (Windows: .venv\Scripts\activate)
+pip install -r requirements.txt
+python scripts/make_demo_data.py
+python scripts/train.py --config configs/train_xgb.yaml
+python scripts/score.py --as-of 2024-12-31
+streamlit run dashboard/App.py
+What’s inside
+
+Baseline clinical scores (LACE) + ML model (GBDT)
+
+Calibration & explainability (SHAP)
+
+Batch scoring with CSV/XLSX export for outreach
+
+Monitoring checks and weekly report
+
+Governance
+
+Model Card: /docs/model_card.md
+
+Data Protection Checklist: /docs/data_protection_checklist.md
+
+Engage QMTRY for a pilot
+
+Data mapping (2–3 weeks)
+
+Model calibration + UAT (2–3 weeks)
+
+Shadow run + readout (3–4 weeks)
+
+Email: sales@qmtry.ai
+
+Compliance highlights
+
+PHI handling & retention
+
+De-identification/destruction
+
+Vendor due diligence (BAA)
+
+42 CFR Part 2 handling, if applicable
+
+License
+
+MIT
 - Focus care‑manager time on members where interventions change outcomes
 - Provide transparent, audited, and fair predictions with clear next actions
 
@@ -27,28 +93,80 @@ python scripts/train.py --config configs/train_xgb.yaml
 What’s inside
 
 Baseline clinical scores (LACE) + ML model (GBDT)
+
 Calibration & explainability (SHAP)
+
 Batch scoring with CSV/XLSX export for outreach
+
 Monitoring checks and weekly report
 
 Governance
 
 Model Card in /docs/model_card.md
+
 Data Protection Checklist in /docs/data_protection_checklist.md
 
 Engage QMTRY for a pilot
+
 Data mapping (2–3 weeks)
+
 Model calibration + UAT (2–3 weeks)
+
 Shadow run + readout (3–4 weeks)
 
-Email: sales@qmtry.ai
+Email: contracts@qmtry.ai
 
 ---
 - PHI handling & retention
 - De‑identification/destruction
 - Vendor due diligence (BAA), 42 CFR Part 2 handling if applicable
 
+---
 
+
+### Appendix B — Outreach Playbook (demo)
+- **Tier 1 (very high risk):** RN call within 48h, meds reconciliation, schedule PCP 7‑day visit, transport support.
+- **Tier 2 (high):** care navigator call within 72h, PCP visit within 14 days, pharmacy consult if PDC<80%.
+- **Tier 3 (moderate):** automated SMS + follow‑up call if symptoms/needs escalate.
+
+
+---
+
+
+### Appendix C — Model Card (fields)
+- **Model name/version, date, owners**
+- **Intended use & users, out‑of‑scope uses**
+- **Training data & time horizon**
+- **Performance (overall and subgroups)**
+- **Calibration diagnostics**
+- **Limitations/guardrails**
+- **Update cadence & monitoring plan**
+
+
+---
+
+
+### Appendix D — Data Protection Checklist (high level)
+- Data residency & VPC
+- Access control & audit
+- PHI handling & retention
+- De‑identification/destruction
+- Vendor due diligence (BAA), 42 CFR Part 2 handling if applicable
+
+---
+
+# QMTRY-Pophealth-Readmissions
+
+
+Reproducible, audit-ready demo to predict 30-day readmissions & avoidable admissions with ML, LACE baselines, SHAP, and a Streamlit care‑manager dashboard (synthetic data, deployable to client).
+
+
+### Quickstart
+```bash
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+python scripts/make_demo_data.py
+python scripts/train.py --config configs/train_xgb.yaml
 
 
 
